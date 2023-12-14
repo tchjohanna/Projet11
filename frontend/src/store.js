@@ -1,0 +1,1 @@
+/chemin/vers/le/fichier/store.js

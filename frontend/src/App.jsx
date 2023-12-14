@@ -1,26 +1,24 @@
 import React from 'react';
 import { Provider } from 'react-redux';
-import store from '../store/store'; // Assurez-vous d'importer le store depuis le bon chemin
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import HomePage from './pages/HomePage';
-import SignInPage from './pages/SignInPage';
-import UserPage from './pages/UserPage';
+import store from './store/store';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import HomePage from './pages/HomePage/HomePage';
+import SignInPage from './pages/SignInPage/SignInPage';
+import UserPage from './pages/UserPage/UserPage';
 
 function App() {
   return (
     <Provider store={store}>
       <Router>
-        <Switch>
-          <Route exact path="/" component={HomePage} />
-          <Route path="/sign-in" component={SignInPage} />
-          <Route path="/user" component={UserPage} />
-          
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/sign-in" element={<SignInPage />} />
+          <Route path="/user" element={<UserPage />} />
           {/* Autres routes si nécessaire */}
-        </Switch>
+        </Routes>
       </Router>
     </Provider>
   );
 }
 
 export default App;
- 
