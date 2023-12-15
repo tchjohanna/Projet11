@@ -1,23 +1,44 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import store from './store/store';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import HomePage from './pages/HomePage/HomePage';
-import SignInPage from './pages/SignInPage/SignInPage';
-import UserPage from './pages/UserPage/UserPage';
+import { Routes, Route } from "react-router-dom";
+import "./css/main.css";
+import Header from "./components/header";
+import Footer from "./components/footer";
+import Home from "./pages/home";
+import SignIn from "./pages/sign-in";
+import UserPage from "./pages/user";
+import Error from "./pages/error";
+
+// Fonction pour gérer les routes de l'application
+function AppRoutes() {
+  return (
+    <Routes>
+      {/* Page d'accueil */}
+      <Route exact path="/" element={<Home />} />
+      <Route path="/argent-bank-app" element={<Home />} />
+
+      {/* Page de connexion */}
+      <Route path="/sign-in" element={<SignIn />} />
+
+      {/* Page utilisateur */}
+      <Route path="/user" element={<UserPage />} />
+
+      {/* Page d'erreur 404 */}
+      <Route path="/*" element={<Error />} />
+    </Routes>
+  );
+}
 
 function App() {
   return (
-    <Provider store={store}>
-      <Router>
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/sign-in" element={<SignInPage />} />
-          <Route path="/user" element={<UserPage />} />
-          {/* Autres routes si nécessaire */}
-        </Routes>
-      </Router>
-    </Provider>
+    <div className="App">
+      {/* En-tête de l'application */}
+      <Header />
+
+      {/* Contenu principal de l'application (les routes) */}
+      <AppRoutes />
+
+      {/* Pied de page de l'application */}
+      <Footer />
+    </div>
   );
 }
 
