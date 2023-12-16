@@ -1,5 +1,5 @@
 import { transactionData } from "../data/data";
-import TransactionCard from "../components/TransactionCard";
+import CarteDePaiement from "../components/CarteDePaiement";
 import { useEffect } from "react";
 import { selectJWT, selectUserLogin, setUserData } from '../store/store'; // Assurez-vous de définir le chemin correct vers votre fichier store.jsx
 import { useDispatch, useSelector } from "react-redux";
@@ -44,7 +44,7 @@ function UserPage() {
       {/* Mapping des transactions */}
       {transactionData.map(({ id, title, amount, description }) => {
         return (
-          <TransactionCard key={id} title={title} amount={amount} description={description} />
+          <CarteDePaiement key={id} title={title} amount={amount} description={description} />
         );
       })}
     </main>
