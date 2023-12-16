@@ -1,12 +1,12 @@
 import { transactionData } from "../data/data";
-import TransactionCard from "../components/transactionCard";
+import TransactionCard from "../components/TransactionCard";
 import { useEffect } from "react";
 import { selectJWT, selectUserLogin, setUserData } from '../store/store'; // Assurez-vous de définir le chemin correct vers votre fichier store.jsx
 import { useDispatch, useSelector } from "react-redux";
 import ApiCalls from "../services/Api";
 
 import { Navigate } from "react-router-dom";
-import UserProfile from "../components/userProfile";
+import UserProfile from "../components/UserProfile";
 
 function UserPage() {
   let dispatch = useDispatch();

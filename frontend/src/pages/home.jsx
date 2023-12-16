@@ -1,4 +1,4 @@
-import Feature from '../components/feature'; // Importer le composant Feature
+import Feature from '../components/Feature'; // Importer le composant Feature
 import { featuresData } from '../data/data'; // Importer les données des fonctionnalités depuis un fichier
 
 function Home() {
