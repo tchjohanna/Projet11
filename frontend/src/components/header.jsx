@@ -1,12 +1,8 @@
 import ArgentBankIcon from "../assets/argentBankLogo.png";
 import { Link } from "react-router-dom";
 import {
-    selectUserLogin,
-    selectJWT,
-    selectUserData,
-    selectFirstName,
-    selectLastName,
-  } from '../store/store';
+    selectUserLogin,selectFirstName,
+} from '../store/store';
 
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from 'react-router-dom';
@@ -18,9 +14,9 @@ import { faArrowRightFromBracket, faUserCircle } from "@fortawesome/free-solid-s
 function Header() {
   // Utilisation de useSelector pour récupérer des données du Redux store
   const connected = useSelector(selectUserLogin);
-  const JWT = useSelector(selectJWT); // Utilisation de selectJWT
+  
   const firstName = useSelector(selectFirstName);
-  const lastName = useSelector(selectLastName); // Utilisation de selectLastName
+  
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
