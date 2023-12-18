@@ -1,5 +1,5 @@
 import React from "react";
-import FormLogin from "../components/FormLogin";
+import AuthentificationPage from "../components/AuthentificationPage";
 
 function SignIn() {
   return (
@@ -10,7 +10,7 @@ function SignIn() {
         {/* Titre de la page */}
         <h1>Sign In</h1>
         {/* Composant du formulaire de connexion */}
-        <FormLogin />
+        <AuthentificationPage />
       </section>
     </main>
   );
