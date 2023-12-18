@@ -1,4 +1,4 @@
-import ArgentBankIcon from "../assets/argentBankLogo.png";
+import ArgentBankIcon from "../assets/img/argentBankLogo.png";
 import { Link } from "react-router-dom";
 import {
     selectUserLogin,selectFirstName,

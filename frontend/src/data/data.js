@@ -1,7 +1,7 @@
 // Import des icônes
-import chatIcon from "../assets/icon-chat.png";
-import moneyIcon from "../assets/icon-money.png";
-import securityIcon from "../assets/icon-security.png";
+import chatIcon from "../assets/img/icon-chat.png";
+import moneyIcon from "../assets/img/icon-money.png";
+import securityIcon from "../assets/img/icon-security.png";
 
 // Données des fonctionnalités
 export const featuresData = [
