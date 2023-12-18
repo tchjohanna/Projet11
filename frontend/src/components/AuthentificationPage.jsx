@@ -56,10 +56,13 @@ export default function AuthentificationPage() {
 
   useEffect(() => {
     let loginData = getLocalStorage("rememberData", false);
-    setRememberMe(loginData.rememberMe);
-    setUserName(loginData.userName);
-    setPassword(loginData.password);
+    if (loginData) {
+      setRememberMe(loginData.rememberMe);
+      setUserName(loginData.userName || "");
+      setPassword(loginData.password || "");
+    }
   }, []);
+  
 
   return (
     <form onSubmit={handleSubmit}>

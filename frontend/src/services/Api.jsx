@@ -1,8 +1,8 @@
 import axios from "axios";
 
-class ApiCalls {
-  // Fonction pour gérer la connexion de l'utilisateur
-  async userLogIn(email, password, rememberMe) {
+
+  class ApiCalls {
+   async userLogIn(email, password, rememberMe) {
     try {
       const response = await axios.post(
         'http://localhost:3001/api/v1/user/login',
@@ -61,7 +61,27 @@ class ApiCalls {
     } catch (error) {
       return error;
     }
+    
   }
+  
+  async getEditUserData(JWT) {
+    try {
+      const response = await axios.post(
+        "http://localhost:3001/api/v1/user/profile",
+        {},
+        {
+          headers: {
+            Authorization: "Bearer " + JWT
+          }
+        }
+      );
+      return response;
+    } catch (error) {
+      return error.response ? error.response.data : error;
+    }
+  }
+  
 }
+
 
 export default ApiCalls;
