@@ -5,7 +5,7 @@ export const logIn = createAction('logIn'); // Action pour la connexion
 export const logOut = createAction('logOut'); // Action pour la déconnexion
 export const setUserData = createAction('setUserData'); // Action pour définir les données de l'utilisateur
 export const updateUserData = createAction('updateUserData'); // Action pour mettre à jour les données de l'utilisateur
-
+export const setUserName = createAction('setUserName'); // Action pour mettre à jour les données de l'utilisateur
 // Initial state (État initial du réducteur)
 const initialState = {
     name: "userReducer",
@@ -37,6 +37,9 @@ const userReducer = createReducer(initialState, (builder) => {
             draft.userData.firstName = action.payload.firstName; // Mettre à jour le prénom
             draft.userData.lastName = action.payload.lastName; // Mettre à jour le nom de famille
         })
+        .addCase(setUserName, (draft, action) => { // Gestion de l'action pour mettre à jour les données de l'utilisateur
+          draft.userData.userName = action.payload.userName; // Mettre à jour le prénom
+        })
 })
 
 // Sélecteurs Redux (Fonctions pour sélectionner des données spécifiques depuis le store)
@@ -51,6 +54,12 @@ export const selectFirstName = (state) => {
 export const selectLastName = (state) => {
   const userData = selectUserData(state);
   return userData ? userData.lastName : '';
+};
+
+export const selectUserName = (state) => {
+  const userData = selectUserData(state);
+  console.log(userData)
+  return userData ? userData.userName : '';
 };
 
 

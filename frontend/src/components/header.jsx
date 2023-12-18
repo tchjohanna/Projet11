@@ -1,7 +1,7 @@
 import ArgentBankIcon from "../assets/img/argentBankLogo.png";
 import { Link } from "react-router-dom";
 import {
-    selectUserLogin,selectFirstName,
+    selectUserLogin,selectUserName,
 } from '../store/store';
 
 import { useDispatch, useSelector } from "react-redux";
@@ -15,7 +15,7 @@ function Header() {
   // Utilisation de useSelector pour récupérer des données du Redux store
   const connected = useSelector(selectUserLogin);
   
-  const firstName = useSelector(selectFirstName);
+  const firstName = useSelector(selectUserName);
   
   const dispatch = useDispatch();
   const navigate = useNavigate();

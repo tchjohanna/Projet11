@@ -43,13 +43,12 @@ import axios from "axios";
   }
 
   // Fonction pour mettre à jour les données du profil de l'utilisateur
-  async updateUserProfileData(firstName, lastName, JWT) {
+  async updateUserProfileData(usertName, JWT) {
     try {
       const response = await axios.put(
         "http://localhost:3001/api/v1/user/profile",
         {
-          firstName,
-          lastName
+          usertName,
         },
         {
           headers: {

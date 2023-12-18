@@ -1,42 +1,39 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ApiProvider from "../services/Api";
-import { updateUserData, selectFirstName, selectLastName, selectJWT } from '../store/store'; // Utilisez simplement "store" comme chemin
+import { setUserName, selectFirstName, selectLastName, selectJWT, selectUserName } from '../store/store';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faTimes } from "@fortawesome/free-solid-svg-icons"; // Mettez à jour l'import de l'icône
+import { faTimes } from "@fortawesome/free-solid-svg-icons";
 
-function EditUser() {
+function UserProfile() {
   const dispatch = useDispatch();
-
-  // États pour gérer l'édition des informations utilisateur
   const [editInfo, setEditInfo] = useState(false);
-  const [editedFirstName, setEditedFirstName] = useState("");
-  const [editedLastName, setEditedLastName] = useState("");
-
-  // Sélection des données utilisateur depuis Redux Store
+  const [editedUserName, setEditedUserName] = useState("");
   const firstName = useSelector(selectFirstName);
   const lastName = useSelector(selectLastName);
   const JWTtoken = useSelector(selectJWT);
+  const userName = useSelector(selectUserName);
+  console.log(userName)
+  // Fonction pour gérer les changements de l'état editedFirstName
+  const handleUsertNameChange = (e) => {
+    const newValue = e.target.value;
+    setEditedUserName(newValue);
+    console.log("Nouvelle valeur de editedFirstName :", newValue);
+  }
 
-  // Fonction pour gérer la modification des informations utilisateur
-  async function handleChangeUserInfo(editedFirstName, editedLastName, JWTtoken) {
-    // Vérification des champs vides
-    if (!editedFirstName.trim() || !editedLastName.trim()) {
+
+  async function handleChangeUserInfo() {
+    if (!editedUserName.trim()) {
       alert("Merci de remplir votre nom et prénom");
       return;
     }
 
-    // Appel de l'API pour mettre à jour les données utilisateur
-    const response = await new ApiProvider().updateEditUserData(
-      editedFirstName,
-      editedLastName,
+    await new ApiProvider().updateUserProfileData(
+      editedUserName,
       JWTtoken
     );
 
-    // Mise à jour des données utilisateur dans Redux Store
-    dispatch(updateUserData(response.data.body));
-
-    // Désactivation du mode d'édition
+    dispatch(setUserName(editedUserName));
     setEditInfo(false);
   }
 
@@ -44,11 +41,7 @@ function EditUser() {
     <div className="header">
       {!editInfo ? (
         <div className="header-user">
-          <h1>
-            Welcome back
-            <br />
-            {firstName} {lastName} !
-          </h1>
+          <h1>Welcome back<br />{firstName} {lastName} !</h1>
         </div>
       ) : (
         <div className="header-user">
@@ -57,41 +50,25 @@ function EditUser() {
             <input
               className="change-zone"
               type="text"
-              placeholder={firstName}
-              value={editedFirstName} // Utilisation de la valeur contrôlée
-              onChange={(e) => setEditedFirstName(e.target.value)}
-            />
-            <input
-              className="change-zone change-lastname"
-              type="text"
-              placeholder={lastName}
-              value={editedLastName} // Utilisation de la valeur contrôlée
-              onChange={(e) => setEditedLastName(e.target.value)}
+              placeholder={userName}
+              value={editedUserName}
+              onChange={handleUsertNameChange} // Utilisation de la fonction de gestion du changement
             />
             <button
               className="edit-button"
-              onClick={() =>
-                handleChangeUserInfo(editedFirstName, editedLastName, JWTtoken)
-              }
+              onClick={() => handleChangeUserInfo()}
             >
               Validate
             </button>
           </div>
         </div>
       )}
-
-      {editInfo ? (
-        <button className="edit-button" onClick={() => setEditInfo(!editInfo)}>
-          Close edit
-          <FontAwesomeIcon icon={faTimes} className="close" />{/* Utilisation de l'icône correcte */}
-        </button>
-      ) : (
-        <button className="edit-button" onClick={() => setEditInfo(!editInfo)}>
-          Edit name
-        </button>
-      )}
+      <button className="edit-button" onClick={() => setEditInfo(!editInfo)}>
+        {editInfo ? "Close edit" : "Edit name"}
+        <FontAwesomeIcon icon={faTimes} className={editInfo ? "close" : ""} />
+      </button>
     </div>
   );
 }
 
-export default EditUser;
+export default UserProfile;
