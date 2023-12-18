@@ -6,7 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import ApiCalls from "../services/Api";
 
 import { Navigate } from "react-router-dom";
-import UserProfile from "../components/UserProfile";
+import EditUser from "../components/EditUser";
 
 function UserPage() {
   let dispatch = useDispatch();
@@ -15,10 +15,10 @@ function UserPage() {
 
   // Utilisez useEffect pour effectuer une action lorsque le composant est monté ou lorsque JWT change.
   useEffect(() => {
-    async function getUserProfile() {
+    async function getEditUser() {
       try {
         // Faites une requête pour récupérer les données du profil de l'utilisateur avec JWT.
-        const response = await new ApiCalls().getUserProfileData(JWT);
+        const response = await new ApiCalls().getEditUserData(JWT);
         
         // Mettez à jour les données de l'utilisateur dans le store Redux.
         dispatch(setUserData(response.data.body));
@@ -28,7 +28,7 @@ function UserPage() {
         // Vous pouvez gérer les erreurs ici, par exemple, afficher un message à l'utilisateur.
       }
     }
-    getUserProfile();
+    getEditUser();
   }, [JWT, dispatch]);
 
   // Si l'utilisateur n'est pas connecté, redirigez-le vers la page de connexion.
@@ -38,8 +38,8 @@ function UserPage() {
 
   return (
     <main className="main bg-dark">
-      {/* Composant UserProfile pour afficher les informations de l'utilisateur */}
-      <UserProfile />
+      {/* Composant EditUser pour afficher les informations de l'utilisateur */}
+      <EditUser />
       <h2 className="sr-only">Accounts</h2>
       {/* Mapping des transactions */}
       {transactionData.map(({ id, title, amount, description }) => {
