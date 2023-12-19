@@ -9,6 +9,8 @@ import {
   clearState,
 } from '../../features/UserSlices';
 
+
+
 function Header() {
   // Récupération du token depuis le stockage local
   let token = localStorage.getItem('token');
@@ -51,10 +53,11 @@ function Header() {
   if (token != null) {
     menuLink = (
       <>
-        <NavLink activeClassName='active' className='main-nav-item' to={'/user'}>
-          <i className='fa fa-user-circle'></i>
-          {username != null ? username : firstName}
-        </NavLink>
+        <NavLink activeClassName='active' className='main-nav-item' to='/user'>
+  <i className='fa fa-user-circle'></i>
+  {username != null ? username : firstName}
+</NavLink>
+
         <Link className='main-nav-item' onClick={logout}>
           <i className='fa fa-sign-out'></i>
           Sign Out
