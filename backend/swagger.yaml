@@ -65,13 +65,18 @@ paths:
         - User Module
       summary: User Profile API
       description: API for fetching a user profile
-      #produces:
-       # - application/json
+      parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
+      produces:
+        - application/json
       responses:
         '200':
-          description: User profile retrieved successully
+          description: User profile retrieved successfully
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/UserProfileResponse'
         '400':
           description: Invalid Fields
         '500':
@@ -84,6 +89,10 @@ paths:
       summary: User Profile API
       description: API for updating a user profile
       parameters:
+        - in: header
+          name: Authorization
+          description: Attach Bearer JWT token
+          required: true
         - in: body
           name: body
           description: Update user profile attributes
@@ -94,9 +103,9 @@ paths:
         - application/json
       responses:
         '200':
-          description: User profile retrieved successully
+          description: User profile updated successfully
           schema:
-            $ref: '#/definitions/ApiResponse'
+            $ref: '#/definitions/UserProfileResponse'
         '400':
           description: Invalid Fields
         '500':
@@ -108,30 +117,32 @@ securityDefinitions:
     in: header
 definitions:
   User:
+    type: object
     properties:
       email:
         type: string
-        description: user email
+        description: User's email address
       password:
         type: string
-        description: user password
+        description: User's password
       firstName:
         type: string
-        description: user first name
+        description: User's first name
       lastName:
         type: string
-        description: user last name
+        description: User's last name
       userName:
         type: string
-        description: user public name
+        description: User's public name
   Login:
+    type: object
     properties:
       email:
         type: string
-        description: user email
+        description: User's email address
       password:
         type: string
-        description: user password
+        description: User's password
   ApiResponse:
     type: object
     properties:
@@ -151,8 +162,31 @@ definitions:
     properties:
       token:
         type: string
+        description: Authorization token
   UserProfile:
     type: object
     properties:
       userName:
         type: string
+        description: User's public name
+  UserProfileResponse:
+    type: object
+    properties:
+      profile:
+        type: object
+        properties:
+          id:
+            type: string
+            description: User's unique ID
+          email:
+            type: string
+            description: User's email address
+          firstName:
+            type: string
+            description: User's first name
+          lastName:
+            type: string
+            description: User's last name
+          userName:
+            type: string
+            description: User's public name
