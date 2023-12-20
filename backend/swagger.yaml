@@ -1,7 +1,7 @@
 swagger: '2.0'
 info:
-  title: Bank Argent API documentation
-  description: Contains all available API endpoints in this codebase
+  title: Documentation de l'API Bank Argent
+  description: Contient tous les endpoints d'API disponibles dans cette base de code
   version: '1.0.0'
   termsOfService: 'http://swagger.io/terms/'
 host: localhost:3001
@@ -12,13 +12,13 @@ paths:
   /user/login:
     post:
       tags:
-        - User Module
-      summary: Login
-      description: API for Login
+        - Module Utilisateur
+      summary: Connexion
+      description: API pour la connexion
       parameters:
         - in: body
           name: body
-          description: Login Payload
+          description: Données de connexion
           required: true
           schema:
             $ref: '#/definitions/Login'
@@ -26,23 +26,23 @@ paths:
         - application/json
       responses:
         '200':
-          description: Login Successfully
+          description: Connexion réussie
           schema:
             $ref: '#/definitions/LoginResponse'
         '400':
-          description: Invalid Fields
+          description: Champs invalides
         '500':
-          description: Internal Server Error
+          description: Erreur serveur interne
   /user/signup:
     post:
       tags:
-        - User Module
-      summary: Signup
-      description: API for Signup
+        - Module Utilisateur
+      summary: Inscription
+      description: API pour l'inscription
       parameters:
         - in: body
           name: body
-          description: Signup Payload
+          description: Données d'inscription
           required: true
           schema:
             $ref: '#/definitions/User'
@@ -50,52 +50,52 @@ paths:
         - application/json
       responses:
         '200':
-          description: Signup Successfully
+          description: Inscription réussie
           schema:
             $ref: '#/definitions/ApiResponse'
         '400':
-          description: Invalid Fields
+          description: Champs invalides
         '500':
-          description: Internal Server Error
+          description: Erreur serveur interne
   /user/profile:
     post:
       security:
         - Bearer: []
       tags:
-        - User Module
-      summary: User Profile API
-      description: API for fetching a user profile
+        - Module Utilisateur
+      summary: API Profil Utilisateur
+      description: API pour récupérer le profil utilisateur
       parameters:
         - in: header
           name: Authorization
-          description: Attach Bearer JWT token
+          description: Joindre le token JWT Bearer
           required: true
       produces:
         - application/json
       responses:
         '200':
-          description: User profile retrieved successfully
+          description: Profil utilisateur récupéré avec succès
           schema:
             $ref: '#/definitions/UserProfileResponse'
         '400':
-          description: Invalid Fields
+          description: Champs invalides
         '500':
-          description: Internal Server Error
+          description: Erreur serveur interne
     put:
       security:
         - Bearer: []
       tags:
-        - User Module
-      summary: User Profile API
-      description: API for updating a user profile
+        - Module Utilisateur
+      summary: API Profil Utilisateur
+      description: API pour mettre à jour le profil utilisateur
       parameters:
         - in: header
           name: Authorization
-          description: Attach Bearer JWT token
+          description: Joindre le token JWT Bearer
           required: true
         - in: body
           name: body
-          description: Update user profile attributes
+          description: Mettre à jour les attributs du profil utilisateur
           required: true
           schema:
             $ref: '#/definitions/UserProfile'
@@ -103,13 +103,13 @@ paths:
         - application/json
       responses:
         '200':
-          description: User profile updated successfully
+          description: Profil utilisateur mis à jour avec succès
           schema:
             $ref: '#/definitions/UserProfileResponse'
         '400':
-          description: Invalid Fields
+          description: Champs invalides
         '500':
-          description: Internal Server Error
+          description: Erreur serveur interne
 securityDefinitions:
   Bearer:
     type: apiKey
@@ -121,28 +121,28 @@ definitions:
     properties:
       email:
         type: string
-        description: User's email address
+        description: Adresse e-mail de l'utilisateur
       password:
         type: string
-        description: User's password
+        description: Mot de passe de l'utilisateur
       firstName:
         type: string
-        description: User's first name
+        description: Prénom de l'utilisateur
       lastName:
         type: string
-        description: User's last name
+        description: Nom de famille de l'utilisateur
       userName:
         type: string
-        description: User's public name
+        description: Nom public de l'utilisateur
   Login:
     type: object
     properties:
       email:
         type: string
-        description: User's email address
+        description: Adresse e-mail de l'utilisateur
       password:
         type: string
-        description: User's password
+        description: Mot de passe de l'utilisateur
   ApiResponse:
     type: object
     properties:
@@ -162,13 +162,13 @@ definitions:
     properties:
       token:
         type: string
-        description: Authorization token
+        description: Jeton d'autorisation
   UserProfile:
     type: object
     properties:
       userName:
         type: string
-        description: User's public name
+        description: Nom public de l'utilisateur
   UserProfileResponse:
     type: object
     properties:
@@ -177,16 +177,16 @@ definitions:
         properties:
           id:
             type: string
-            description: User's unique ID
+            description: ID unique de l'utilisateur
           email:
             type: string
-            description: User's email address
+            description: Adresse e-mail de l'utilisateur
           firstName:
             type: string
-            description: User's first name
+            description: Prénom de l'utilisateur
           lastName:
             type: string
-            description: User's last name
+            description: Nom de famille de l'utilisateur
           userName:
             type: string
-            description: User's public name
+            description: Nom public de l'utilisateur
