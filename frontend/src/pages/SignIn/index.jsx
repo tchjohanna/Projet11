@@ -20,6 +20,7 @@ function SignIn() {
 
   // Fonction de soumission du formulaire
   const onSubmit = (data) => {
+    console.log(data)
     dispatch(loginUser(data));
   };
 

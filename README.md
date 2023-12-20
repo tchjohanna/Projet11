@@ -40,7 +40,7 @@ npm run build
 npm run populate-db
 ```
 
-Your server should now be running at http://locahost:3001 and you will now have two users in your MongoDB database!
+Your server should now be running at http://locahost:3000 and you will now have two users in your MongoDB database!
 
 ## Populated Database Data
 

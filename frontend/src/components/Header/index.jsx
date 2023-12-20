@@ -1,6 +1,6 @@
 import './header_module.scss';
 import Logo from '../../assets/argentBankLogo.webp';
-import { Link, NavLink, useNavigate } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -11,7 +11,6 @@ import {
 
 function Header() {
   let token = localStorage.getItem('token');
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const { isError, username, firstName } = useSelector(userSelector);
 
@@ -35,7 +34,7 @@ function Header() {
 
   const logout = () => {
     localStorage.removeItem('token');
-    navigate('/signIn');
+    window.location.href = '/signIn'
   };
 
   let menuLink = token ? (
